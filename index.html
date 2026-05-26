@@ -7,155 +7,37 @@
     <meta property="og:title" content="Sana Özel Bir Sürprizim Var! 🎁">
     <meta property="og:description" content="Senin için bir şey hazırladım, bakmak ister misin? 💕">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #ffe6e6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
-        /* Arka plandaki uçan kalpler */
-        .heart {
-            position: absolute;
-            color: #ff4d6d;
-            font-size: 20px;
-            opacity: 0.6;
-            animation: float 4s linear infinite;
-            pointer-events: none;
-            z-index: 1;
-        }
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-10vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-            z-index: 10;
-            position: relative;
-        }
-        h1 {
-            color: #ff4d6d;
-            margin-bottom: 25px;
-            font-size: 24px;
-        }
-        .btn-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            margin-top: 20px;
-            position: relative;
-            min-height: 140px;
-        }
-        button {
-            padding: 12px 35px;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            width: 160px;
-        }
-        #yesBtn {
-            background-color: #4caf50;
-            color: white;
-            box-shadow: 0 4px 10px rgba(76,175,80,0.3);
-        }
-        #yesBtn:hover {
-            transform: scale(1.05);
-        }
-        #noBtn {
-            background-color: #f44336;
-            color: white;
-            box-shadow: 0 4px 10px rgba(244,67,54,0.3);
-            position: absolute;
-            top: 70px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 100;
-        }
-        /* Form Ekranı Tasarımı (Sürpriz Üretici) */
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-            font-weight: bold;
-        }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            border: 2px border #ffccd5;
-            border-radius: 10px;
-            font-size: 16px;
-            outline: none;
-        }
-        input:focus {
-            border-color: #ff4d6d;
-        }
-        .share-box {
-            margin-top: 20px;
-            padding: 15px;
-            background: #fff0f3;
-            border-radius: 10px;
-            display: none;
-            word-break: break-all;
-        }
-        .copy-btn {
-            background-color: #ff4d6d;
-            color: white;
-            width: 100%;
-            margin-top: 10px;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: sans-serif; background-color: #ffe6e6; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; position: relative; }
+        .heart { position: absolute; color: #ff4d6d; font-size: 20px; opacity: 0.6; animation: float 4s linear infinite; pointer-events: none; }
+        @keyframes float { 0% { transform: translateY(100vh); opacity: 0.6; } 100% { transform: translateY(-10vh); opacity: 0; } }
+        .container { background-color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; max-width: 400px; width: 90%; z-index: 10; }
+        h1 { color: #ff4d6d; margin-bottom: 25px; font-size: 22px; }
+        .btn-container { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 20px; position: relative; min-height: 140px; }
+        button { padding: 12px 35px; font-size: 18px; font-weight: bold; border: none; border-radius: 25px; cursor: pointer; transition: all 0.2s ease; width: 160px; }
+        #yesBtn { background-color: #4caf50; color: white; }
+        #noBtn { background-color: #f44336; color: white; position: absolute; top: 70px; left: 50%; transform: translateX(-50%); z-index: 100; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        input { width: 100%; padding: 10px; border: 2px solid #ffccd5; border-radius: 10px; font-size: 16px; }
+        .share-box { margin-top: 20px; padding: 15px; background: #fff0f3; border-radius: 10px; display: none; }
     </style>
 </head>
 <body>
 
     <div id="creatorPanel" class="container">
-        <h1>✨ Sürpriz Bağlantısı Oluştur</h1>
-        <div class="form-group">
-            <label>Sevgilinizin İsmi:</label>
-            <input type="text" id="targetName" placeholder="Örn: İrem">
-        </div>
-        <div class="form-group">
-            <label>Sorulacak Soru:</label>
-            <input type="text" id="targetQuestion" value="Benimle konsere gelir misin? 🎸">
-        </div>
-        <button id="generateBtn" style="width: 100%; background-color: #ff4d6d; color: white;">✨ Linki Üret</button>
-        
+        <h1>✨ Sürpriz Ayarları</h1>
+        <div class="form-group"><label>İsim:</label><input type="text" id="targetName"></div>
+        <div class="form-group"><label>Soru:</label><input type="text" id="targetQuestion" value="Benimle konsere gelir misin? 🎸"></div>
+        <div class="form-group"><label>Evet Cevabı:</label><input type="text" id="targetAnswer" value="Çok mutlu ettin beni! 💕"></div>
+        <button id="generateBtn" style="width: 100%; background-color: #ff4d6d; color: white; padding: 10px;">Linki Üret</button>
         <div id="shareBox" class="share-box">
-            <p style="font-size: 14px; color: #555; margin-bottom: 5px;">Aşağıdaki linki kopyalayıp WhatsApp'tan gönderin:</p>
             <strong id="generatedLink" style="color: #d90429; font-size: 13px;"></strong>
-            <button id="copyBtn" class="copy-btn">📋 Linki Kopyala</button>
+            <button id="copyBtn" style="background-color: #ff4d6d; color: white; width: 100%; margin-top: 10px;">📋 Kopyala</button>
         </div>
     </div>
 
     <div id="surprisePanel" class="container" style="display: none;">
-        <h1 id="questionText">Soru Yükleniyor...</h1>
+        <h1 id="questionText"></h1>
         <div class="btn-container">
             <button id="yesBtn">Evet</button>
             <button id="noBtn">Hayır</button>
@@ -163,92 +45,45 @@
     </div>
 
     <script>
-        // Sürekli ve Yoğun Göz Yormayan Kalp Yağmuru Efekti
         function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 2 + 3) + 's'; // 3-5 saniye arası akış
-            heart.style.fontSize = (Math.random() * 10 + 15) + 'px'; // 15px - 25px arası değişken boyut
-            document.body.appendChild(heart);
-            
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
+            const h = document.createElement('div'); h.classList.add('heart'); h.innerHTML = '❤️';
+            h.style.left = Math.random() * 100 + 'vw'; h.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(h); setTimeout(() => h.remove(), 5000);
         }
-        // Kalp sıklığını artırdık (Her 250ms'de bir yeni kalp düşer)
-        setInterval(createHeart, 250);
+        setInterval(createHeart, 300);
 
-        // URL Parametre Kontrolü
-        const urlParams = new URLSearchParams(window.location.search);
-        const isim = urlParams.get('isim');
-        const soru = urlParams.get('soru');
-
-        const creatorPanel = document.getElementById('creatorPanel');
-        const surprisePanel = document.getElementById('surprisePanel');
-
-        if (isim && soru) {
-            creatorPanel.style.display = 'none';
-            surprisePanel.style.display = 'block';
-            document.getElementById('questionText').innerHTML = `Güzeller güzeli ${decodeURIComponent(isim)},<br><br>${decodeURIComponent(soru)}`;
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('isim')) {
+            document.getElementById('creatorPanel').style.display = 'none';
+            document.getElementById('surprisePanel').style.display = 'block';
+            document.getElementById('questionText').innerHTML = `${decodeURIComponent(params.get('isim'))},<br><br>${decodeURIComponent(params.get('soru'))}`;
         }
 
-        // Link Üretme Mekanizması
         document.getElementById('generateBtn').addEventListener('click', () => {
-            const nameVal = encodeURIComponent(document.getElementById('targetName').value.trim());
-            const quesVal = encodeURIComponent(document.getElementById('targetQuestion').value.trim());
-            
-            if(!nameVal) { alert('Lütfen bir isim girin!'); return; }
-
-            const currentUrl = window.location.href.split('?')[0];
-            const finalLink = `${currentUrl}?isim=${nameVal}&soru=${quesVal}`;
-            
-            document.getElementById('generatedLink').innerText = finalLink;
+            const n = encodeURIComponent(document.getElementById('targetName').value);
+            const q = encodeURIComponent(document.getElementById('targetQuestion').value);
+            const a = encodeURIComponent(document.getElementById('targetAnswer').value);
+            const link = `${window.location.href.split('?')[0]}?isim=${n}&soru=${q}&cevap=${a}`;
+            document.getElementById('generatedLink').innerText = link;
             document.getElementById('shareBox').style.display = 'block';
         });
 
-        // Kopyalama Butonu
         document.getElementById('copyBtn').addEventListener('click', () => {
-            const linkText = document.getElementById('generatedLink').innerText;
-            navigator.clipboard.writeText(linkText);
-            alert('Harika! Sürpriz link panoya kopyalandı. Şimdi WhatsApp\'tan gönderebilirsin. 🚀');
+            navigator.clipboard.writeText(document.getElementById('generatedLink').innerText);
+            alert('Kopyalandı!');
         });
 
-        // "Evet" Butonuna Basınca Olacaklar
         document.getElementById('yesBtn').addEventListener('click', () => {
-            document.getElementById('surprisePanel').innerHTML = `
-                <h1 style="font-size: 30px;">Kaptım Bileti! 🎫🥳</h1>
-                <p style="font-size: 18px; color: #555; margin-top: 15px;">Harika bir konser bizi bekliyor! Dünyanın en mutlu insanı yaptın beni. 💕</p>
-                <div style="font-size: 50px; margin-top: 20px;">🎸🕺🔥💃🎵</div>
-            `;
+            document.getElementById('surprisePanel').innerHTML = `<h1 style="font-size: 28px;">${decodeURIComponent(params.get('cevap') || 'Evet dedin!')}</h1>`;
         });
 
-        // ASLA KAYBOLMAYAN, SONSUZA KADAR KAÇAN "HAYIR" BUTONU
         const noBtn = document.getElementById('noBtn');
-        
-        function moveButton() {
-            const padding = 20;
-            // Butonun ekrandan tamamen taşmaması için sınırları belirliyoruz
-            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
-            
-            // Rastgele yeni koordinatlar (Görünür alan içerisinde kalacak şekilde)
-            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
-            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
-            
+        noBtn.addEventListener('mouseenter', () => {
             noBtn.style.position = 'fixed';
-            noBtn.style.left = randomX + 'px';
-            noBtn.style.top = randomY + 'px';
-            noBtn.style.transform = 'none'; // Merkezleme sıfırlanıyor
-        }
-
-        // Hem mouse hem dokunmatik ekranlar için kaçış tetikleyicileri
-        noBtn.addEventListener('mouseenter', moveButton);
-        noBtn.addEventListener('touchstart', (e) => {
-            e.preventDefault(); // Telefonlarda tıklamayı tamamen bloke eder
-            moveButton();
+            noBtn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+            noBtn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
         });
+        noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); noBtn.style.top = Math.random() * 80 + '%'; noBtn.style.left = Math.random() * 80 + '%'; });
     </script>
 </body>
 </html>

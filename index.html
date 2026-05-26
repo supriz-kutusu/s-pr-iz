@@ -2,405 +2,80 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Sana Özel Bir Sürprizim Var! 🎁</title>
     <style>
-        * {
-            box-sizing: border-box;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background: linear-gradient(135deg, #fff0f3 0%, #ffe0e6 100%);
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-            overflow-x: hidden;
-            margin: 0; 
-            position: relative;
-        }
-        
-        /* Uçuşan kalpler */
-        .heart { 
-            position: fixed; 
-            bottom: -50px;
-            color: #ff477e; 
-            font-size: 20px; 
-            pointer-events: none; 
-            z-index: 9999;
-            animation: floatHeart linear forwards;
-        }
-        
-        @keyframes floatHeart { 
-            0% { 
-                transform: translateY(0) scale(0.5) rotate(0deg); 
-                opacity: 1;
-            }
-            50% { 
-                transform: translateY(-50vh) scale(1.2) rotate(15deg); 
-                opacity: 0.8;
-            }
-            100% { 
-                transform: translateY(-100vh) scale(0.8) rotate(25deg); 
-                opacity: 0;
-            }
-        }
-        
-        /* Konfeti canvas */
-        .confetti-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9998;
-        }
-        
-        .container { 
-            background-color: rgba(255, 255, 255, 0.96); 
-            padding: 40px 30px; 
-            border-radius: 40px; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
-            text-align: center; 
-            max-width: 450px; 
-            width: 90%; 
-            z-index: 10; 
-            backdrop-filter: blur(5px);
-            border: 1px solid #ffccd5;
-        }
-        
-        h1 { 
-            color: #d62828; 
-            margin-bottom: 25px; 
-            font-size: 26px; 
-            font-weight: 800;
-        }
-        
-        .btn-container { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            gap: 25px; 
-        }
-        
-        button { 
-            padding: 14px 35px; 
-            font-size: 18px; 
-            border: none; 
-            border-radius: 50px; 
-            cursor: pointer; 
-            transition: transform 0.2s, background 0.2s; 
-            width: 220px; 
-            font-weight: bold; 
-            font-family: inherit;
-        }
-        
-        #yesBtn { 
-            background: linear-gradient(135deg, #58b970, #3a9e5a); 
-            color: white; 
-            box-shadow: 0 5px 15px rgba(88,185,112,0.4);
-        }
-        
-        #yesBtn:active { transform: scale(0.96); }
-        
-        #noBtn { 
-            background: linear-gradient(135deg, #ef476f, #d63e63); 
-            color: white; 
-            position: relative;
-            box-shadow: 0 5px 15px rgba(239,71,111,0.3);
-            transition: none;
-        }
-        
-        .form-group { 
-            margin-bottom: 18px; 
-            text-align: left; 
-        }
-        
-        label { 
-            font-weight: 600; 
-            color: #d62828; 
-            font-size: 14px;
-        }
-        
-        input { 
-            width: 100%; 
-            padding: 12px 15px; 
-            border: 2px solid #ffccd5; 
-            border-radius: 25px; 
-            margin-top: 6px; 
-            font-family: inherit;
-            outline: none;
-            transition: 0.2s;
-        }
-        
-        input:focus { border-color: #ff477e; }
-        
-        #shareBox { 
-            margin-top: 25px; 
-            padding: 18px; 
-            background: linear-gradient(135deg, #fff0f3, #ffe6ec); 
-            border-radius: 20px; 
-            display: none; 
-            border: 1px dashed #ff85a1;
-        }
-        
-        #finalLink { 
-            color: #d62828; 
-            word-break: break-all; 
-            font-size: 12px;
-            display: block;
-            margin-top: 10px;
-        }
-        
-        .copy-btn {
-            background: #ff4d6d;
-            color: white;
-            width: 100%;
-            margin-top: 12px;
-            padding: 10px;
-            font-size: 14px;
-        }
-        
-        .success-message {
-            font-size: 28px;
-            font-weight: bold;
-            color: #58b970;
-            animation: bounce 0.6s ease;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
+        body { font-family: sans-serif; background-color: #fff0f3; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; margin: 0; }
+        .heart { position: absolute; color: #ff85a1; font-size: 15px; opacity: 0.4; pointer-events: none; animation: float linear infinite; }
+        @keyframes float { 0% { transform: translateY(100vh) rotate(0deg); } 100% { transform: translateY(-10vh) rotate(360deg); } }
+        .container { background-color: white; padding: 40px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center; max-width: 400px; width: 90%; z-index: 10; }
+        h1 { color: #d62828; margin-bottom: 30px; font-size: 24px; }
+        .btn-container { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        button { padding: 15px 40px; font-size: 18px; border: none; border-radius: 30px; cursor: pointer; transition: 0.3s; width: 200px; font-weight: bold; }
+        #yesBtn { background-color: #58b970; color: white; }
+        #noBtn { background-color: #ef476f; color: white; position: relative; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        input { width: 100%; padding: 12px; border: 2px solid #ffccd5; border-radius: 15px; margin-top: 5px; }
+        #shareBox { margin-top: 25px; padding: 15px; background: #fffafb; border-radius: 15px; display: none; }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
     <div id="creatorPanel" class="container">
-        <h1>✨ Sürprizini Hazırla ✨</h1>
-        <div class="form-group">
-            <label>💖 Sevgilinin/Flörtünün Adı:</label>
-            <input type="text" id="tName" placeholder="Örn: Zeynep, Efe, Derin...">
-        </div>
-        <div class="form-group">
-            <label>💌 Sormak İstediğin Soru:</label>
-            <input type="text" id="tQues" value="Benimle bir kahve içer misin? ☕">
-        </div>
-        <div class="form-group">
-            <label>🎉 Evet Derse Gösterilecek Mesaj:</label>
-            <input type="text" id="tAns" value="Çok mutlu oldum! 😊💕">
-        </div>
-        <button id="genBtn" style="background: linear-gradient(135deg, #ff4d6d, #e63946); color: white; width: 100%; padding: 14px; font-size: 16px;">✨ Özel Linki Oluştur ✨</button>
+        <h1>✨ Sürprizini Hazırla</h1>
+        <div class="form-group"><label>İsim:</label><input type="text" id="tName"></div>
+        <div class="form-group"><label>Soru:</label><input type="text" id="tQues" value="Benimle bir kahve içer misin? ☕"></div>
+        <div class="form-group"><label>Evet Cevabı:</label><input type="text" id="tAns" value="Çok mutlu oldum! 😊"></div>
+        <button id="genBtn" style="background-color: #ff4d6d; color: white; width: 100%;">Linki Oluştur</button>
         <div id="shareBox">
-            <p style="font-size: 13px; color: #d62828;">✅ Link kopyalandı! Sevgiline gönderebilirsin.</p>
-            <strong id="finalLink"></strong>
-            <button id="copyAgainBtn" class="copy-btn">📋 Linki Tekrar Kopyala</button>
+            <p style="font-size: 12px; color: #777;">Link kopyalandı, gönder!</p>
+            <strong id="finalLink" style="color: #d62828; word-break: break-all;"></strong>
         </div>
     </div>
 
     <div id="surprisePanel" class="container" style="display: none;">
         <h1 id="qDisplay"></h1>
         <div class="btn-container">
-            <button id="yesBtn">Evet 💖</button>
-            <button id="noBtn">Hayır 😅</button>
+            <button id="yesBtn">Evet</button>
+            <button id="noBtn">Hayır</button>
         </div>
-        <p style="margin-top: 25px; font-size: 12px; opacity: 0.6;">✨ Hayır butonu kaçar ama asla kaybolmaz ✨</p>
     </div>
 
     <script>
-        // ========== KALP OLUŞTURMA FONKSİYONU ==========
+        // Yavaş ve göz yormayan kalpler
         function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            const kalpler = ['❤️', '💖', '💗', '💓', '💕', '💝', '🌸', '🌹'];
-            heart.innerHTML = kalpler[Math.floor(Math.random() * kalpler.length)];
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = (Math.random() * 25 + 15) + 'px';
-            heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
-            heart.style.opacity = Math.random() * 0.7 + 0.3;
-            document.body.appendChild(heart);
-            setTimeout(() => { if(heart && heart.remove) heart.remove(); }, 8000);
+            const h = document.createElement('div'); h.classList.add('heart'); h.innerHTML = '❤️';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDuration = (Math.random() * 5 + 7) + 's';
+            document.body.appendChild(h); setTimeout(() => h.remove(), 12000);
         }
-        
-        // Sürekli arka plan kalpleri (sadece sürpriz panel açıkken)
-        let bgHeartInterval = null;
-        
-        function startBackgroundHearts() {
-            if (bgHeartInterval) clearInterval(bgHeartInterval);
-            bgHeartInterval = setInterval(() => {
-                if (document.getElementById('surprisePanel').style.display === 'block') {
-                    createHeart();
-                }
-            }, 1000);
-        }
-        
-        function stopBackgroundHearts() {
-            if (bgHeartInterval) {
-                clearInterval(bgHeartInterval);
-                bgHeartInterval = null;
-            }
-        }
-        
-        // ========== PATLAMA (EVET BUTONU İÇİN BOL KALP + KONFETİ) ==========
-        function celebrateWithHeartsAndConfetti() {
-            // 1. KONFETİ PATLAMALARI (3 dalga)
-            canvasConfetti({ particleCount: 180, spread: 100, origin: { y: 0.6 }, startVelocity: 20, colors: ['#ff477e', '#ffb3c6', '#ff85a1', '#58b970'] });
-            setTimeout(() => {
-                canvasConfetti({ particleCount: 120, spread: 130, origin: { y: 0.4, x: 0.3 }, startVelocity: 22 });
-            }, 150);
-            setTimeout(() => {
-                canvasConfetti({ particleCount: 120, spread: 130, origin: { y: 0.5, x: 0.7 }, startVelocity: 22 });
-            }, 300);
-            
-            // 2. BOL BOL KALP YAĞMURU (70 kalp, dalga dalga)
-            for (let i = 0; i < 70; i++) {
-                setTimeout(() => {
-                    createHeart();
-                    // Bazen çift kalp
-                    if (Math.random() > 0.7) createHeart();
-                }, i * 60);
-            }
-            
-            // 3. Ekstra ani kalp patlaması
-            for (let i = 0; i < 20; i++) {
-                setTimeout(() => {
-                    for (let j = 0; j < 3; j++) createHeart();
-                }, i * 100 + 500);
-            }
-        }
-        
-        // ========== HAYIR BUTONU: KAYBOLMAZ SADECE KAÇAR ==========
-        function moveNoButton() {
-            const noBtn = document.getElementById('noBtn');
-            if (!noBtn) return;
-            
-            // Fixed yap
-            if (noBtn.style.position !== 'fixed') {
-                noBtn.style.position = 'fixed';
-                const rect = noBtn.getBoundingClientRect();
-                noBtn.style.left = rect.left + 'px';
-                noBtn.style.top = rect.top + 'px';
-            }
-            
-            const margin = 15;
-            const maxX = window.innerWidth - noBtn.offsetWidth - margin;
-            const maxY = window.innerHeight - noBtn.offsetHeight - margin;
-            const minX = margin;
-            const minY = margin;
-            
-            let randomX = Math.floor(Math.random() * (maxX - minX + 1) + minX);
-            let randomY = Math.floor(Math.random() * (maxY - minY + 1) + minY);
-            
-            randomX = Math.min(Math.max(randomX, margin), window.innerWidth - noBtn.offsetWidth - margin);
-            randomY = Math.min(Math.max(randomY, margin), window.innerHeight - noBtn.offsetHeight - margin);
-            
-            noBtn.style.left = randomX + 'px';
-            noBtn.style.top = randomY + 'px';
-            noBtn.style.transition = 'none';
-            
-            // Hafif titreşim hissi
-            if (navigator.vibrate) navigator.vibrate(15);
-        }
-        
-        // ========== SAYFA YÜKLENME & PARAMETRE KONTROLÜ ==========
+        setInterval(createHeart, 80);
+
+        // Parametre yönetimi
         const params = new URLSearchParams(window.location.search);
-        
-        if (params.get('isim') && params.get('soru')) {
-            // Sürpriz ekranını göster
+        if (params.get('isim')) {
             document.getElementById('creatorPanel').style.display = 'none';
             document.getElementById('surprisePanel').style.display = 'block';
-            document.getElementById('qDisplay').innerHTML = `${decodeURIComponent(params.get('isim'))}, ${decodeURIComponent(params.get('soru'))} 💫`;
-            
-            // Başarı mesajını kaydet
-            const successMsg = params.get('cevap') ? decodeURIComponent(params.get('cevap')) : "Çok mutlu oldum! 😊";
-            
-            // Arka plan kalpleri başlat
-            startBackgroundHearts();
-            
-            // EVET BUTONU OLAYI
-            const yesBtn = document.getElementById('yesBtn');
-            const noBtnElement = document.getElementById('noBtn');
-            
-            yesBtn.onclick = () => {
-                stopBackgroundHearts();
-                // Özel kutlama (bol kalp + konfeti)
-                celebrateWithHeartsAndConfetti();
-                
-                // Mesajı göster
-                const surpriseDiv = document.getElementById('surprisePanel');
-                surpriseDiv.innerHTML = `<h1 class="success-message" style="font-size: 32px; color: #58b970;">${successMsg} 🎉</h1>
-                                        <p style="margin-top: 20px; font-size: 16px;">💖 Sonsuz teşekkürler! 💖</p>
-                                        <div style="margin-top: 25px;">❤️ 💖 💗 💕 💝</div>`;
-                surpriseDiv.style.textAlign = 'center';
-                
-                // Fazladan 20 kalp daha
-                for (let i = 0; i < 30; i++) {
-                    setTimeout(() => createHeart(), i * 50);
-                }
-            };
-            
-            // HAYIR BUTONU KAÇIŞ MEKANİZMASI (kaybolmaz)
-            if (noBtnElement) {
-                noBtnElement.addEventListener('mouseover', moveNoButton);
-                noBtnElement.addEventListener('click', moveNoButton);
-                noBtnElement.addEventListener('touchstart', moveNoButton, { passive: false });
-                noBtnElement.addEventListener('touchend', moveNoButton);
-            }
-            
-            // Ekran yeniden boyutlandığında buton ekranda kalsın
-            window.addEventListener('resize', () => {
-                const noBtn = document.getElementById('noBtn');
-                if (noBtn && document.getElementById('surprisePanel').style.display === 'block' && noBtn.style.position === 'fixed') {
-                    moveNoButton();
-                }
-            });
+            document.getElementById('qDisplay').innerText = `${decodeURIComponent(params.get('isim'))}, ${decodeURIComponent(params.get('soru'))}`;
         }
-        
-        // ========== LİNK OLUŞTURUCU ==========
+
         document.getElementById('genBtn').onclick = () => {
-            const isim = document.getElementById('tName').value.trim();
-            const soru = document.getElementById('tQues').value.trim();
-            const cevap = document.getElementById('tAns').value.trim();
-            
-            if (!isim) {
-                alert("Lütfen bir isim girin! 💕");
-                return;
-            }
-            if (!soru) {
-                alert("Lütfen bir soru yazın!");
-                return;
-            }
-            if (!cevap) {
-                alert("Lütfen 'Evet' cevabı için bir mesaj girin!");
-                return;
-            }
-            
-            const link = `${window.location.origin}${window.location.pathname}?isim=${encodeURIComponent(isim)}&soru=${encodeURIComponent(soru)}&cevap=${encodeURIComponent(cevap)}`;
-            document.getElementById('finalLink').innerHTML = link;
+            const link = `${window.location.origin}${window.location.pathname}?isim=${encodeURIComponent(document.getElementById('tName').value)}&soru=${encodeURIComponent(document.getElementById('tQues').value)}&cevap=${encodeURIComponent(document.getElementById('tAns').value)}`;
+            document.getElementById('finalLink').innerText = link;
             document.getElementById('shareBox').style.display = 'block';
             navigator.clipboard.writeText(link);
         };
-        
-        // Tekrar kopyalama butonu
-        document.getElementById('copyAgainBtn').onclick = () => {
-            const linkText = document.getElementById('finalLink').innerText;
-            if (linkText) {
-                navigator.clipboard.writeText(linkText);
-                alert("📋 Link tekrar kopyalandı!");
-            }
+
+        document.getElementById('yesBtn').onclick = () => {
+            document.getElementById('surprisePanel').innerHTML = `<h1 style="font-size: 32px;">${decodeURIComponent(params.get('cevap'))}</h1>`;
         };
-        
-        // Sayfa açılırken arka plan kalpleri başlat (form ekranında da hafif)
-        setInterval(() => {
-            if (document.getElementById('creatorPanel').style.display !== 'none') {
-                if (Math.random() > 0.7) createHeart();
-            }
-        }, 2000);
+
+        // Hayır butonu: Asla kaybolmaz, hep ekran sınırları içinde kaçar
+        const noBtn = document.getElementById('noBtn');
+        noBtn.onmouseover = () => {
+            noBtn.style.position = 'fixed';
+            noBtn.style.top = Math.random() * (window.innerHeight - 60) + 'px';
+            noBtn.style.left = Math.random() * (window.innerWidth - 220) + 'px';
+        };
     </script>
 </body>
-</html>
+</html> bu kodda evete bastiktan sonra cikan kalp nasil daha fazla yapabiloirm kodun hangi satirinda

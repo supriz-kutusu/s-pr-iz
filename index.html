@@ -11,8 +11,8 @@
         h1 { color: #d62828; margin-bottom: 5px; font-size: 26px; }
         .sub-text { color: #777; margin-bottom: 25px; font-size: 14px; }
         .form-group { margin-bottom: 18px; text-align: left; }
-        label { font-weight: 600; color: #444; font-size: 14px; }
-        input { width: 100%; padding: 12px; border: 2px solid #ffccd5; border-radius: 15px; margin-top: 5px; box-sizing: border-box; outline: none; }
+        label { font-weight: 600; color: #444; font-size: 14px; display: block; margin-bottom: 5px; }
+        input { width: 100%; padding: 12px; border: 2px solid #ffccd5; border-radius: 15px; box-sizing: border-box; outline: none; }
         button { padding: 15px 40px; font-size: 18px; border: none; border-radius: 30px; cursor: pointer; transition: 0.3s; width: 100%; font-weight: bold; background-color: #ff4d6d; color: white; margin-top: 10px; }
         #shareBox { margin-top: 25px; padding: 15px; background: #fffafb; border-radius: 15px; display: none; }
     </style>
@@ -25,22 +25,22 @@
         
         <div class="form-group">
             <label>Sevgilinin / Crush'ın İsmi:</label>
-            <input type="text" id="tName" placeholder="Örn: Buse, Can...">
+            <input type="text" id="tName" placeholder="Örn: Buse, Can, Elif...">
         </div>
         <div class="form-group">
-            <label>Ne Sormak İstiyorsun?:</label>
-            <input type="text" id="tQues" placeholder="Örn: Akşam yemeğe ne dersin? 🍝">
+            <label>Ne sormak istiyorsun?:</label>
+            <input type="text" id="tQues" placeholder="Örn: Bu akşam yemeğe çıkalım mı? 🍝">
         </div>
         <div class="form-group">
-            <label>Evet Derse Ne Söylemek İstersin?:</label>
+            <label>Evet derse ne demek istersin?:</label>
             <input type="text" id="tAns" placeholder="Örn: Harika! Akşam 8'de seni alıyorum. 😍">
         </div>
         
-        <button id="genBtn">Linki Oluştur</button>
+        <button id="genBtn">Sürpriz Linkini Oluştur</button>
         
         <div id="shareBox">
-            <p>Link hazır, kopyalayıp gönder!</p>
-            <strong id="finalLink" style="color: #d62828; word-break: break-all;"></strong>
+            <p>Link hazır, kopyalayıp hemen gönder!</p>
+            <strong id="finalLink" style="color: #d62828; word-break: break-all; cursor: pointer;"></strong>
         </div>
     </div>
 
